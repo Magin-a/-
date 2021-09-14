@@ -1,0 +1,74 @@
+#2주차
+class Node():
+    def __init__(self):
+        self.data = None
+        self.link = None
+
+node1 = Node()
+node1.data =  "다현"
+
+node2 = Node()
+node2.data = "미나"
+node1.link = node2
+
+node3 = Node()
+node3.data = "정연"
+node2.link = node3
+
+current = node1
+print(current.data)
+while current.link != None:
+
+    current = current.link
+    print(current.data)
+
+newnode = Node()
+newnode.data = "재남"
+newnode.link = node2.link 
+node2.link = newnode
+
+node2.link = node3
+#node2.link = node2.link.link  
+del(node3)
+
+current = node1
+print(current.data)
+while current.link != None:
+    current = current.link
+    print(current.data)
+
+#p.133
+class Node():
+    def __init__(self):
+        self.data = None
+        self.link = None
+
+def printNodes(start):
+    current = start
+    if current == None:
+        return
+    print(current.data)    
+    
+    while current.link != None:
+        current = current.link
+        print(current.data)
+    
+
+memory = []
+head, current, pre = None, None, None
+dataArray = ["다현", "쯔위", "정연", "미나"]
+
+
+node = Node()
+node.data = dataArray[0]
+head = node
+memory.append(node)
+
+for i in dataArray[1:]:
+    pre = node
+    node = Node()
+    node.data = i
+    pre.link = node
+    memory.append(node)
+
+printNodes(head)
