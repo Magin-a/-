@@ -1,0 +1,80 @@
+katok =["다현", "정연", "쯔위", "사나"]
+katok.append("모모")
+katok.insert(3, "미나")
+
+del katok[4]
+#katok[4] = katok[5]
+#katok[5] = None
+
+print(katok)
+
+index, name = map(str, input().split())
+
+def insertData(x, y):
+    if  0> int(x) or len(katok) < int(x):
+        print("값의 범위가 맞지 않습니다.")
+    
+    else:
+        katok.insert(int(x), y)
+        print(katok) 
+
+insertData(index, name)
+num = int(input())
+
+def del_data(x):
+    for i in range(x, len(katok)+1):
+        katok[x] = katok[x+1]
+
+    katok.pop()
+    
+
+del_data(num)
+print(katok)
+
+# ---------------------------------------------------------------------------------#
+# #1주차-2
+def printPoly(my_list):
+    pol = ' '
+    size = len(my_list)
+    for i in my_list:
+        size -= 1
+        pol += "+"+str(i)+"x^"+str(size)
+    print("p(x) =" + pol)
+
+my_list = list(map(int, input().split()))
+printPoly(my_list)
+
+
+def calPoly(my_list, x):
+    size = len(my_list)
+    result = 0
+    for i in my_list:
+        size -= 1
+        result += i*x**size
+    print(result)
+my_list = list(map(int, input("함수의 계수를 입력하시오").split()))
+num = int(input("미지수에 넣을 값을 입력하시오:"))
+calPoly(my_list, num)
+
+def printPoly2(my_list, index):
+    result = " "
+    size = len(my_list)
+    num = 0
+    for i in my_list:
+        result += "+"+str(i)+"x^"+str(index[num])
+        num += 1
+    print("p(x)"+result)
+
+def calPoly2(my_list, index):
+    result = 0
+    num = 0
+    x = int(input("미지수의 값"))
+    for i in my_list:
+        result += i*x**index[num]
+    print(result)
+
+
+my_list = list(map(int, input("함수의 계수를 입력 하시오: ").split()))
+my_list2 = list(map(int, input("계수의 차수를 입력하시오").split()))
+printPoly2(my_list, my_list2)
+calPoly2(my_list, my_list2)
