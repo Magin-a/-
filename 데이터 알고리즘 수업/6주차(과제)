@@ -90,7 +90,7 @@ def deletNode(finddata):
         pre = current
         current = current.nlink
         
-        if finddata == current.data:
+        if finddata == current.data and current.data != last.data:
             
             pre.nlink = current.nlink
             
@@ -102,8 +102,11 @@ def deletNode(finddata):
             return
             
         
-        elif last.data == current.data:
-            11
+        elif last.data == current.data: #해당 
+            current.plink = head
+            pre.nlink = None
+            del(current)
+            return 
             
             # current.plink = head.plink
             # del(current)
@@ -114,8 +117,8 @@ def deletNode(finddata):
     #     del(current)
     
 
-# deletNode("선빈")
-# printNodes(head)
+deletNode("지효")
+printNodes(head)
 
 # 3) data 값을 갖는 노드 탐색 함수(findNode(data))
 def findNoed(finddata):
@@ -132,5 +135,5 @@ def findNoed(finddata):
             return current
     return Node2()
         
-f = findNoed("재남")
-print(f.data)
+# f = findNoed("재남")
+# print(f.data)
