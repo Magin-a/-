@@ -140,4 +140,5 @@ def findNode(finddata):  #findNode() 함수는 같은 리스트의 값으로 나
     return Node2()
         
 f = findNode("재남") #없는 값을 입력하면 None을 출력합니다.
+print() # 이전 코드와 한꺼번에 출력시에 줄바꿈용도
 print(f.data)
