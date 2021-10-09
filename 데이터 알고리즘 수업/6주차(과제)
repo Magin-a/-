@@ -1,0 +1,136 @@
+#2중연결리스트
+class Node2():
+    def __init__(self):
+        self.plink = None  #정방향 
+        self.data = None   
+        self.nlink = None  #역방향
+
+def printNodes(start):
+    current = start
+    if current.nlink == None:
+        return
+    print("정방향 -->", end = ' ')
+    print(current.data,end = ' ') 
+    while current.nlink != None:
+        current =current.nlink
+        print(current.data, end = " ")
+
+    print()
+    print("역방향 -->", end=" ")
+    print(current.data, end=" ")
+    while current.plink != None:
+        current = current.plink
+        print(current.data, end=' ')
+
+memory = []
+head, current, pre = None, None, None
+dataArray = ["다현", "정연", "쯔위", "사나", "지효"]
+
+if __name__ == "__main__":
+    node = Node2()
+    node.data = dataArray[0]
+    head = node
+    memory.append(node)
+
+    for data in dataArray[1:]:
+        pre = node
+        node = Node2()
+        node.data = data
+        pre.nlink = node
+        node.plink = pre
+        memory.append(node)
+
+    # printNodes(head)
+
+# 1) 새로운 data를 삽입하는 노드 삽입 함수 insertNode(data)
+def insertnode(insertdata, finddata):
+    global pre, current, head, memory
+    
+
+    if finddata == head.data:
+        node = Node2()
+        node.data = insertdata
+        node.nlink = head  #순방향과 역방향은 시작위치는 같으므로 둘다 노드의 시작은 head
+        node.plink = head
+        
+    
+    current = head
+    while current.nlink != None or current.plink != None:
+        pre = current
+        current = current.nlink
+        
+        if current.data == finddata:
+            node = Node2()
+            node.data = insertdata
+           
+            pre.nlink = node
+            node.nlink = current
+            
+            current.plink = node 
+            node.plink = pre
+            return
+
+insertnode("선빈", "쯔위")
+printNodes(head)
+
+# 2) data를 갖는 노드를 삭제하는 노드 삭제 함수(deleteNode(data) )
+def deletNode(finddata):
+    global pre, current, head, memory
+    last = memory[len(memory)-1]
+
+    if finddata == head.data:
+        current = head
+        head = head.nlink
+        head.plink = None
+        del(current)
+        return
+    
+    current = head
+    while current.nlink != None:
+        pre = current
+        current = current.nlink
+        
+        if finddata == current.data:
+            
+            pre.nlink = current.nlink
+            
+            pre = current
+            current = current.nlink
+            current.plink = pre.plink
+            
+            del(current)
+            return
+            
+        
+        elif last.data == current.data:
+            11
+            
+            # current.plink = head.plink
+            # del(current)
+        
+    # if last.data == current.data:
+    #     pre.nlink = None
+    #     head = pre.plink
+    #     del(current)
+    
+
+# deletNode("선빈")
+# printNodes(head)
+
+# 3) data 값을 갖는 노드 탐색 함수(findNode(data))
+def findNoed(finddata):
+    global pre, current, head, memory
+    current = head
+
+    if finddata == current.data:
+        return current
+
+    while current.nlink != None:
+        current = current.nlink
+
+        if current.data == finddata:
+            return current
+    return Node2()
+        
+f = findNoed("재남")
+print(f.data)
