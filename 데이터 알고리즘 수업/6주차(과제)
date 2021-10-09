@@ -47,15 +47,16 @@ def insertnode(insertdata, finddata):
     global pre, current, head, memory
     
 
-    if finddata == head.data:
+    if finddata == head.data: #순방향기준 맨 처음 데이터자리에 추가하는 조건문
         node = Node2()
         node.data = insertdata
-        node.nlink = head  #순방향과 역방향은 시작위치는 같으므로 둘다 노드의 시작은 head
-        node.plink = head
+        node.nlink = head  #head는 노드의 시작점을 의미합니다.
+        node.plink = head 
+        return
         
     
-    current = head
-    while current.nlink != None or current.plink != None:
+    current = head 
+    while current.nlink != None:  
         pre = current
         current = current.nlink
         
@@ -69,6 +70,14 @@ def insertnode(insertdata, finddata):
             current.plink = node 
             node.plink = pre
             return
+
+    pre = current   # finddata가 리스트에 없을 경우 마지막 노드 뒤에 추가하는 코드
+    node = Node2()
+    current = node
+    node.data = insertdata
+    pre.nlink = node
+    current.plink = pre
+    return
 
 insertnode("선빈", "쯔위")
 printNodes(head)
@@ -90,7 +99,7 @@ def deletNode(finddata):
         pre = current
         current = current.nlink
         
-        if finddata == current.data and current.data != last.data:
+        if finddata == current.data and current.data != last.data: #다음조건은 마지막 노드 외에 노드를 삭제할 때 실행
             
             pre.nlink = current.nlink
             
@@ -102,26 +111,21 @@ def deletNode(finddata):
             return
             
         
-        elif last.data == current.data: #해당 
-            current.plink = head
-            pre.nlink = None
-            del(current)
+        elif last.data == current.data: #해당 조건은 리스트에서  맨마지막 값을  처리하기위한 코드
+            current.plink = head #역방향에서는 맨처음 데이터를 지우는 것으로 headf를 입력
+            pre.nlink = None #pre의 노드가 마지막이므로 링크를 None으로 입력
+            del(current) 
             return 
-            
-            # current.plink = head.plink
-            # del(current)
-        
-    # if last.data == current.data:
-    #     pre.nlink = None
-    #     head = pre.plink
-    #     del(current)
     
-
-deletNode("지효")
+deletNode("사나")
 printNodes(head)
 
+
+
+
 # 3) data 값을 갖는 노드 탐색 함수(findNode(data))
-def findNoed(finddata):
+
+def findNode(finddata):  #findNode() 함수는 같은 리스트의 값으로 나타내는 것이므로 이전에 했던 선형 리스트와 비슷하다.
     global pre, current, head, memory
     current = head
 
@@ -135,5 +139,5 @@ def findNoed(finddata):
             return current
     return Node2()
         
-# f = findNoed("재남")
-# print(f.data)
+f = findNode("재남") #없는 값을 입력하면 None을 출력합니다.
+print(f.data)
