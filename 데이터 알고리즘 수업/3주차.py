@@ -32,7 +32,7 @@ for i in dataArray[1:]:
     pre.link = node
     memory.append(node)
 
-printNodes(head)
+# printNodes(head)
 
 #P.138(4-6)
 def insertNode(findData, insertdata):
@@ -42,26 +42,27 @@ def insertNode(findData, insertdata):
         node = Node()
         node.data = insertdata
         node.link = head
-        head = None
+        head = node
         return
     
     current = head
     while current.link != None:
         pre = current
         current = current.link
-        if findData == current:
+        if current.data == findData:
             node = Node()
             node.data = insertdata
             node.link = current
-            pre.link = node()
+            pre.link = node
             return
-    
+        
     #찾는 노드가 없을 경우 마지막 노드에 추가
     node = Node()
     node.data = insertdata
     current.link = node
         
-
+insertNode("**", "선빈")
+printNodes(head)
         
 
 #P.142 (4-7)
@@ -83,5 +84,22 @@ def DeleteNode(DeletData):
             del(current)
             return
 
-# #p.144
-# def searchNode():
+#p.144
+def searchNode(finddata):
+    global pre, current, memory, head
+
+    if head.data == finddata:
+        current = head
+        return current
+
+    current = head
+    while current.link != None:
+        current = current.link
+
+        if current.data == finddata:
+            return current
+
+    return Node()
+
+# f = searchNode("**")
+# print(f.data)
