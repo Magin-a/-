@@ -5,31 +5,6 @@ class Node():
         self.link = None
 
 
-# node1 = Node()
-# node1.data = "다현"
-# node1.link = node1
-
-
-# node2 = Node()
-# node2.data = "정연"
-# node1.link = node2
-# node2.link = node1
-
-# node3 = Node()
-# node3.data = "사나"
-# node2.link = node3
-# node3.link = node1
-
-# node4 = Node()
-# node4.data = "쯔위"
-# node3.link = node4
-# node4.link = node1
-
-# current = node1
-# print(current.data)
-# while current.link != node1:
-#     current= current.link
-#     print(current.data)
 
 #P.172
 def printnode(start):
@@ -40,12 +15,12 @@ def printnode(start):
     while current.link != start:
         current = current.link
         print(current.data)
-    
 
+
+    
 memory = []
 head, current, pre = None, None, None
 dataArray = ["다현", "정연", "사나", "쯔위","지효"]
-
 
 if __name__ == "__main__":
     
@@ -63,49 +38,60 @@ if __name__ == "__main__":
         node.link = head
         memory.append(node)
 
-    # printnode(head)
 
 
 #P.178
 def insertdata(finddata, insertdata):
     global pre, current, head, memory
-    
-    if finddata == current.data:
+
+    if head.data == finddata:
         node = Node()
         node.data = insertdata
         node.link = head
-        head = None
+        finish = head
+        while finish.link != head:
+            finish = finish.link
+        finish.link = node
+        head = node
         return
     
     current = head
     while current.link != head:
         pre = current
         current = current.link
+
         if current.data == finddata:
             node = Node()
             node.data = insertdata
             node.link = current
-            pre.link = node
-
+            pre.link  = node
+        
             return
+        
+        
     node = Node()
+    current.link = node
     node.data = insertdata
-    node.link = node
+    node.link = head
+
+# insertdata("**", "**")
+# printnode(head)
+
+    
 
 
 #P.184
 def deletnode(deletdata):
     global pre, current, memory, head
 
-    if head.data == deletdata:
+    if deletdata == head.data:
         current = head
         head = head.link
-        last = head
+        finish = head
 
-        while last.link != current:
-            last = last.link         #마지막 노드를 찾아서 head와 연결해 원형리스트 구현
-
-        last.link = head
+        while finish.link != current:
+            finish = finish.link
+        finish.link = head
         del(current)
         return
 
@@ -113,10 +99,76 @@ def deletnode(deletdata):
     while current.link != head:
         pre = current
         current = current.link
+
         if current.data == deletdata:
             pre.link = current.link
             del(current)
+
             return
 
-deletnode("쯔위")
-printnode(head)
+        
+
+# deletnode("")
+# printnode(head)
+
+#교재에서 확인 노드
+def findNode(finddata):
+    global pre, current, head, memory
+
+    if finddata == head.data:
+        return current
+    
+    while current.link != head:
+        current = current.link
+        if current.data == finddata:
+            return 
+
+    return Node()
+
+f = findNode("**")
+print(f.data)     
+
+
+
+#나의 노드찾기
+def findNode(finddata):
+    global pre, current, head, memory
+
+    if finddata == head.data:
+        print(head.data)
+        return
+    
+    current = head
+    while current.link != head:
+        current = current.link
+
+        if current.data == finddata:
+            print(current.data)
+
+            return
+
+    print("찾는 데이터는 없습니다.")
+
+
+findNode("**")
+
+
+
+
+# if head.data == deletdata:
+#         current = head
+#         head = head.link
+#         last = head
+
+#         while last.link != current:
+#             last = last.link
+        
+#         current = head
+#         while current.link != head:
+#             pre = current
+#             current = current.link
+
+#             if current.data == deletdata:
+#                 pre.link = current.link
+#                 del(current)
+#                 return 
