@@ -1,60 +1,101 @@
-#큐
-queue = [None, None, None, None]
-front, rear = -1
+#6주차(스택)
+stack = [None, None, None, None, None]
 
-rear +=1
-queue[rear] = "딸기"
+top = -1
 
-rear += 1
-queue[rear] = "바나나"
+top += 1
+stack[top] = "커피"
+top +=1
+stack[top] = "녹차"
+top += 1
+stack[top] = "꿀물"
 
-rear += 1
-queue[rear] = "초코"
+print("---스택상태----")
+for i in range(len(stack)-1,-1,-1):
+    print(stack[i])
 
+print("---------")
 
+data = stack[top]
+stack[top] = None
+top -= 1
+print("pop:",data)
+data = stack[top]
+stack[top] = None
+top -= 1
+print("pop:",data)
+data = stack[top]
+stack[top] = None
+top -= 1
+print("pop:",data)
 
-def dequeue():
-    global front, rear, queue
+for y in range(len(stack)-1,-1,-1):
+    print(stack[y])
 
-    
-    for _ in range(len(queue)-1):
-        front += 1
-        print(queue[front])
-        queue[front] = None
+def isStack():
+    global size, stack, top
 
-    front = -1
-
-dequeue()
-print(queue)
-
-def isqueuefull():
-    global front, rear, queue
-    
-    if len(queue) != (rear - front):
-        print("자리가 남았습니다.")
-        return False
-    else:
-        print("큐가 가득 차 있습니다.")
+    if top == size:
         return True
-
-def isqueueempty():
-    global front, rear, queue
     
-    if len(queue) != (rear - front):
-        print("자리가 남았습니다.")
-        return True
     else:
-        print("큐가 가득 차 있습니다.")
         return False
 
+size = 5
+isStack()
 
-def enqueue(data):
-    global front, rear, queue
+def push(data):
+    global size, stack, top
 
-    if None  in queue:
-       findindex = queue.index(None)
-       queue[findindex] = data
+    if isStack() == True:
+        print("자리가 가득 차있습니다.")
+    else:
+        stack[top] = data
+        print(stack)
 
-enqueue("피스타치오")
-print(queue)
+# push("말차")
+
+def pop():
+    global size, stack, top
+
+
+def peek():
+    global size, stack, top
     
+    if len(stack) == 0:
+        print("데이터가 없습니다.")
+
+    else:
+        print(stack[i])
+
+peek()
+
+import webbrowser
+import time
+
+webbrowser.open("www.naver.com")
+size = 100
+stack = [None for _ in range(size)]
+top = -1
+
+if "__name__" == "__main__":
+    urls = ["naver.com", "daum.net", "nate.com"]
+
+    for url in urls:
+        push(url)
+        webbrowser.open('http://'+url)
+        print(url, end = "")
+        time.sleep(1)
+
+    print("방문종료")
+    time.sleep(3)
+
+    while True:
+        url = pop()
+        if url == None:
+            break
+        webbrowser.open('http://'+url)
+        print(url, end="")
+        time.sleep(3)
+
+    print("방문종료")
