@@ -47,11 +47,6 @@ def postorder(node):
     postorder(node.right)
     print(node.data)
 
-
-name = 6
-node = Treenode()
-node.data = name
-
 print('전위순회:', end ='')
 preder(node1)
 print("끝")
@@ -62,7 +57,11 @@ print('끝')
 
 print("후위순회:", end='')
 postorder(node1)
-print('끝')
+print('끝')    
+
+name = 6
+node = Treenode()
+node.data = name
 
 memory = []
 root = None
