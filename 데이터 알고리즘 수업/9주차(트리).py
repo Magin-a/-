@@ -52,6 +52,18 @@ name = 6
 node = Treenode()
 node.data = name
 
+print('전위순회:', end ='')
+preder(node1)
+print("끝")
+
+print("중위순회:", end='')
+inorder(node1)
+print('끝')
+
+print("후위순회:", end='')
+postorder(node1)
+print('끝')
+
 memory = []
 root = None
 dataArray = ["블랭핑크", "레드벨렛", "마마무","에이핑크", "걸스데이", "트와이스"]
