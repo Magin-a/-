@@ -4,24 +4,25 @@ class Treenode():
         self.right = None
         self.data = None
 
-# node1 = Treenode()
-# node1.data = "화사"
+node1 = Treenode()
+node1.data = "화사"
 
-# node2 = Treenode()
-# node2.data = "솔라"
-# node1.left = node2
+node2 = Treenode()
+node2.data = "솔라"
+node1.left = node2
 
-# node3 = Treenode()
-# node3.data = "문별"
-# node1.right = node3
+node3 = Treenode()
+node3.data = "문별"
+node1.right = node3
 
-# print(node1.data)
+print(node1.data)
 
-# print(node1.left.data, node1.right.data)
+print(node1.left.data, node1.right.data)
 
 node1 = Treenode()
 node1.data = ""
 
+#전위 순회
 def preder(node):
     if node == None:
         return
@@ -29,6 +30,22 @@ def preder(node):
     print(node.data)
     preder(node.left)
     preder(node.right)
+
+#중위순회
+def inorder(node):
+    if node == None:
+        return
+    inorder(node.left)
+    print(node.data)
+    inorder(node.right)
+
+#후위 순회
+def postorder(node):
+    if node == None:
+        return
+    postorder(node.left)
+    postorder(node.right)
+    print(node.data)
 
 
 name = 6
@@ -64,7 +81,29 @@ for name in dataArray[1:]:
     memory.append(node)
 print("이진 트리 구성 끝")
 
-finddata = ''
+#노드 삽입
+insert = "****"
+current = root 
+while True:
+    if current.data > insert:
+        if current.left == None:
+            current.left = node
+            break
+        current = current.left
+
+    else:
+        if current.right == None:
+            current.right = node
+            break
+        current = current.right
+memory.append(node)
+print("이진트리구성")
+
+
+
+
+#노드 찾기
+finddata = '***'
 
 current = root
 while True:
@@ -83,6 +122,8 @@ while True:
             print("없음")
             break
 
+
+#노드 삭제
 deletdata = ''
 current = root
 parent = None
