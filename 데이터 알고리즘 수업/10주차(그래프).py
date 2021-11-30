@@ -16,3 +16,11 @@ for row in range(4):
         print(G1.graph[row][col], end =" ")
     print()
 
+G3 = Graph(4)
+G3.graph[0][1] =1; G3.graph[0][2] = 1
+G3.graph[3][0] =1; G3.graph[3][2] = 1
+
+for row in range(4):
+    for col in range(4):
+        print(G3.graph[row][col], end=' ')
+    print()
